@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restaurants · Operation Cannoli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Operation Cannoli Startseite">
+        <span>Operation</span><span>Cannoli</span>
+        <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button">Menü</button>
+      <nav class="nav" id="nav">
+        <a class="" href="index.html">Home</a>
+        <a class="" href="unterkunft.html">Unterkunft</a>
+        <a class="" href="anreise.html">Anreise</a>
+        <a class="" href="essen.html">Essen</a>
+        <a class="active" href="restaurants.html">Restaurants</a>
+        <a class="" href="timetable.html">Timetable</a>
+        <a class="" href="aufgaben.html">Aufgaben</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero" style="--page-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=2000&q=88');"><div class="section-inner"><h1 class="page-title">Restaurants</h1><p class="page-sub">Restaurants in der Nähe der Villa – mit Entfernung, Adresse, Kontakt und Routenbutton.</p></div></section>
+      <section class="section"><div class="section-inner"><div class="restaurant-grid">
+            <article class="restaurant-card"><div class="restaurant-img"><img src="images/restaurants/trattoria-maiuri.jpg" alt="Trattoria Maiuri" onerror="this.src='https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=84'"></div><div class="restaurant-body"><h3 class="restaurant-name">Trattoria Maiuri</h3><div class="stars">★★★★★ <span class="muted">(Poli)</span></div><div class="restaurant-meta">Via Roma 69, Poli<br>Tel.: +39 06 955 1222<br><span class="distance">⌖ ca. 1,2 km von der Villa</span></div><div class="restaurant-actions"><a class="small-btn" href="https://www.google.com/maps/dir/?api=1&origin=Villa%20Sant%20Angelo%20Poli%20Roma&destination=Trattoria%20Maiuri%20Via%20Roma%2069%20Poli" target="_blank" rel="noopener">Route öffnen</a><a class="small-btn" href="https://www.instagram.com/trattoria_maiuri/" target="_blank" rel="noopener">Bildquelle</a></div></div></article>
+            <article class="restaurant-card"><div class="restaurant-img"><img src="images/restaurants/doppio-zero.jpg" alt="Doppio Zero" onerror="this.src='https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=84'"></div><div class="restaurant-body"><h3 class="restaurant-name">Doppio Zero</h3><div class="stars">★★★★★ <span class="muted">(Pizza)</span></div><div class="restaurant-meta">Piazza G. Cascioli, Poli<br>Tel.: +39 06 4368 4853<br><span class="distance">⌖ ca. 1,0 km von der Villa</span></div><div class="restaurant-actions"><a class="small-btn" href="https://www.google.com/maps/dir/?api=1&origin=Villa%20Sant%20Angelo%20Poli%20Roma&destination=Doppio%20Zero%20Piazza%20Monsignor%20Giuseppe%20Cascioli%206%20Poli" target="_blank" rel="noopener">Route öffnen</a><a class="small-btn" href="https://www.instagram.com/doppioozero/" target="_blank" rel="noopener">Bildquelle</a></div></div></article>
+            <article class="restaurant-card"><div class="restaurant-img"><img src="images/restaurants/giardino-panoramico.jpg" alt="Trattoria del Giardino Panoramico" onerror="this.src='https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=84'"></div><div class="restaurant-body"><h3 class="restaurant-name">Giardino Panoramico</h3><div class="stars">★★★★★ <span class="muted">(Castel San Pietro Romano)</span></div><div class="restaurant-meta">Castel San Pietro Romano<br>Tel.: +39 06 953 6262<br><span class="distance">⌖ ca. 6,0 km von der Villa</span></div><div class="restaurant-actions"><a class="small-btn" href="https://www.google.com/maps/dir/?api=1&origin=Villa%20Sant%20Angelo%20Poli%20Roma&destination=Trattoria%20del%20Giardino%20Panoramico%20Castel%20San%20Pietro%20Romano" target="_blank" rel="noopener">Route öffnen</a><a class="small-btn" href="https://www.trattoriadelgiardinopanoramico.it/" target="_blank" rel="noopener">Website</a></div></div></article>
+</div><div style="margin-top:24px"><iframe class="map-frame" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=restaurants%20near%20Villa%20Sant%20Angelo%20Poli%20Roma&output=embed"></iframe></div></div></section>
+    </main>
+
+    <div class="quote">“La famiglia è tutto.”<div class="tiny-flag" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <footer class="site-footer">Operation Cannoli · Villa Sant’Angelo · Poli · 11. – 14. Juni 2026</footer>
+  </div>
+
+  <div class="insurance-modal is-hidden" id="insuranceModal" aria-modal="true" role="dialog" aria-labelledby="insuranceTitle">
+    <div class="insurance-card">
+      <button class="insurance-close" type="button" aria-label="Banner schließen" data-close-insurance>×</button>
+      <h2 class="insurance-title" id="insuranceTitle">Heute schon an Morgen gedacht?</h2>
+      <div class="insurance-photo">
+        <img src="images/ah-versicherung.jpg" alt="Mario und Maximilian für A&H Versicherung">
+      </div>
+      <div class="insurance-logo">
+        <div class="insurance-logo-main">A&amp;H</div>
+        <div class="insurance-logo-sub">Versicherung</div>
+      </div>
+      <button class="gold-btn insurance-cta" type="button" data-close-insurance>Ja, ich will eine Lebensversicherung</button>
+    </div>
+  </div>
+
+</body>
+</html>

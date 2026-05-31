@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anreise · Operation Cannoli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Operation Cannoli Startseite">
+        <span>Operation</span><span>Cannoli</span>
+        <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button">Menü</button>
+      <nav class="nav" id="nav">
+        <a class="" href="index.html">Home</a>
+        <a class="" href="unterkunft.html">Unterkunft</a>
+        <a class="active" href="anreise.html">Anreise</a>
+        <a class="" href="essen.html">Essen</a>
+        <a class="" href="restaurants.html">Restaurants</a>
+        <a class="" href="timetable.html">Timetable</a>
+        <a class="" href="aufgaben.html">Aufgaben</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero" style="--page-image: url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=2000&q=88');"><div class="section-inner"><h1 class="page-title">Anreise</h1><p class="page-sub">Anreise am 11. Juni 2026, Abreise am 14. Juni 2026. Check-in ab 15:00 Uhr, Check-out bis 11:00 Uhr.</p></div></section>
+      <section class="section"><div class="section-inner"><div class="grid-3"><div class="info-card"><h3>Option A: Tivoli</h3><ul class="clean"><li>Zug ab Roma Tiburtina</li><li>Fahrzeit: ca. 35–40 Minuten</li><li>Taxi von Tivoli nach Poli: ca. 15 km / 20 Minuten</li></ul></div><div class="info-card"><h3>Option B: Metro C + Shuttle</h3><ul class="clean"><li>Metro C bis Montecompatri/Pantano</li><li>Shuttle ab Metro: 09:30 / 13:30 / 19:00 / 21:00 Uhr</li><li>Rückfahrt ab Poli: 06:20 / 10:20 / 14:30 / 20:00 Uhr</li></ul></div><div class="info-card"><h3>Option C: Zagarolo</h3><ul class="clean"><li>Zug ab Roma Termini mit FL2</li><li>Fahrzeit: ca. 30 Minuten</li><li>Taxi von Zagarolo nach Poli: ca. 12 km</li></ul></div></div><div class="center-actions"><a class="outline-btn" href="https://www.google.com/maps/dir/?api=1&destination=Villa%20Sant%20Angelo%20Poli%20Roma" target="_blank" rel="noopener">Route zur Villa öffnen</a></div></div></section>
+    </main>
+
+    <div class="quote">“La famiglia è tutto.”<div class="tiny-flag" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <footer class="site-footer">Operation Cannoli · Villa Sant’Angelo · Poli · 11. – 14. Juni 2026</footer>
+  </div>
+
+  <div class="insurance-modal is-hidden" id="insuranceModal" aria-modal="true" role="dialog" aria-labelledby="insuranceTitle">
+    <div class="insurance-card">
+      <button class="insurance-close" type="button" aria-label="Banner schließen" data-close-insurance>×</button>
+      <h2 class="insurance-title" id="insuranceTitle">Heute schon an Morgen gedacht?</h2>
+      <div class="insurance-photo">
+        <img src="images/ah-versicherung.jpg" alt="Mario und Maximilian für A&H Versicherung">
+      </div>
+      <div class="insurance-logo">
+        <div class="insurance-logo-main">A&amp;H</div>
+        <div class="insurance-logo-sub">Versicherung</div>
+      </div>
+      <button class="gold-btn insurance-cta" type="button" data-close-insurance>Ja, ich will eine Lebensversicherung</button>
+    </div>
+  </div>
+
+</body>
+</html>

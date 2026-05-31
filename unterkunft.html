@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unterkunft · Operation Cannoli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Operation Cannoli Startseite">
+        <span>Operation</span><span>Cannoli</span>
+        <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button">Menü</button>
+      <nav class="nav" id="nav">
+        <a class="" href="index.html">Home</a>
+        <a class="active" href="unterkunft.html">Unterkunft</a>
+        <a class="" href="anreise.html">Anreise</a>
+        <a class="" href="essen.html">Essen</a>
+        <a class="" href="restaurants.html">Restaurants</a>
+        <a class="" href="timetable.html">Timetable</a>
+        <a class="" href="aufgaben.html">Aufgaben</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero" style="--page-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=88');"><div class="section-inner"><h1 class="page-title">Unterkunft</h1><p class="page-sub">Villa Sant’Angelo in Poli – das Hauptquartier von Operation Cannoli.</p></div></section>
+      <section class="section"><div class="section-inner"><div class="section-head"><h2 class="section-title">Villa Sant’Angelo</h2></div><div class="villa-strip"><img src="images/villa/villa-1.jpg" alt="Villa Pool" onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=84'"><img src="images/villa/villa-2.jpg" alt="Villa Außenbereich" onerror="this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=84'"><img src="images/villa/villa-3.jpg" alt="Villa Innenbereich" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=84'"><img src="images/villa/villa-4.jpg" alt="Villa Terrasse" onerror="this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=84'"></div></div></section>
+      <section class="section"><div class="section-inner"><div class="grid-3"><div class="info-card"><h3>Lage</h3><p>Die Villa liegt in Poli in der Provinz Rom, Lazio. Rom liegt ungefähr 40 Kilometer westlich. Das Dorf Poli befindet sich etwa 900 Meter entfernt.</p></div><div class="info-card"><h3>Check-in</h3><ul class="clean"><li>Anreise: Donnerstag, 11. Juni 2026</li><li>Check-in: ab 15:00 Uhr</li><li>Adresse: Via Monte Sant’Angelo, 00010 Poli</li></ul></div><div class="info-card"><h3>Check-out</h3><ul class="clean"><li>Abreise: Sonntag, 14. Juni 2026</li><li>Check-out: bis 11:00 Uhr</li><li>Kontakt: +39 342 090 8356</li></ul></div></div><div style="margin-top:24px"><iframe class="map-frame" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Villa%20Sant%20Angelo%20Poli%20Roma&output=embed"></iframe></div><div class="center-actions"><a class="outline-btn" href="https://www.santangelovilla.com" target="_blank" rel="noopener">Website öffnen</a></div></div></section>
+    </main>
+
+    <div class="quote">“La famiglia è tutto.”<div class="tiny-flag" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <footer class="site-footer">Operation Cannoli · Villa Sant’Angelo · Poli · 11. – 14. Juni 2026</footer>
+  </div>
+
+  <div class="insurance-modal is-hidden" id="insuranceModal" aria-modal="true" role="dialog" aria-labelledby="insuranceTitle">
+    <div class="insurance-card">
+      <button class="insurance-close" type="button" aria-label="Banner schließen" data-close-insurance>×</button>
+      <h2 class="insurance-title" id="insuranceTitle">Heute schon an Morgen gedacht?</h2>
+      <div class="insurance-photo">
+        <img src="images/ah-versicherung.jpg" alt="Mario und Maximilian für A&H Versicherung">
+      </div>
+      <div class="insurance-logo">
+        <div class="insurance-logo-main">A&amp;H</div>
+        <div class="insurance-logo-sub">Versicherung</div>
+      </div>
+      <button class="gold-btn insurance-cta" type="button" data-close-insurance>Ja, ich will eine Lebensversicherung</button>
+    </div>
+  </div>
+
+</body>
+</html>

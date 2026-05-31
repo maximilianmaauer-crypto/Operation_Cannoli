@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Essen · Operation Cannoli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Operation Cannoli Startseite">
+        <span>Operation</span><span>Cannoli</span>
+        <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button">Menü</button>
+      <nav class="nav" id="nav">
+        <a class="" href="index.html">Home</a>
+        <a class="" href="unterkunft.html">Unterkunft</a>
+        <a class="" href="anreise.html">Anreise</a>
+        <a class="active" href="essen.html">Essen</a>
+        <a class="" href="restaurants.html">Restaurants</a>
+        <a class="" href="timetable.html">Timetable</a>
+        <a class="" href="aufgaben.html">Aufgaben</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero" style="--page-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=2000&q=88');"><div class="section-inner"><h1 class="page-title">Essen</h1><p class="page-sub">Vegetarischer Menüplan für die Gruppe – nach Tagen sortiert und mit Rezeptlinks für das Kochteam.</p></div></section>
+      <section class="section"><div class="section-inner"><div class="section-head"><h2 class="section-title">Essensplan</h2></div><div class="meal-grid"><article class="meal-card"><span class="day-badge">Donnerstag</span><h3>Pasta al Pomodoro</h3><p>Spaghetti mit frischer Tomatensauce, Basilikum und Olivenöl.</p><div class="recipe-links"><a class="recipe-link" href="#pasta">Rezept öffnen</a></div></article><article class="meal-card"><span class="day-badge">Freitag</span><h3>Verdure, Halloumi alla Griglia & BBQ</h3><p>Zucchini, Paprika, Aubergine und Halloumi vom Rost mit Kräutermarinade; BBQ als Ergänzung.</p><div class="recipe-links"><a class="recipe-link" href="#grill">Rezept öffnen</a></div></article><article class="meal-card"><span class="day-badge">Samstag</span><h3>Bruschetta, Panzanella & Finocchio</h3><p>Bruschetta al Pomodoro, Panzanella und Insalata di Finocchio e Arancia.</p><div class="recipe-links"><a class="recipe-link" href="#bruschetta">Bruschetta</a><a class="recipe-link" href="#panzanella">Panzanella</a><a class="recipe-link" href="#finocchio">Finocchio</a></div></article></div><div class="recipe-detail-grid"><article class="meal-card recipe-detail" id="pasta"><h3>Pasta al Pomodoro</h3><p><strong>Zutaten:</strong> Spaghetti, Tomaten, Knoblauch, Basilikum, Olivenöl, Salz, Pfeffer, optional Parmesan.</p><p><strong>Ablauf:</strong> Knoblauch in Olivenöl anschwitzen, Tomaten zugeben und einkochen lassen. Pasta al dente kochen, mit Sauce vermengen und mit Basilikum abschließen.</p></article><article class="meal-card recipe-detail" id="grill"><h3>Verdure & Halloumi alla Griglia</h3><p><strong>Zutaten:</strong> Zucchini, Paprika, Aubergine, Halloumi, Olivenöl, Zitrone, Knoblauch, Rosmarin, Thymian, Salz und Pfeffer.</p><p><strong>Ablauf:</strong> Gemüse schneiden, mindestens drei Stunden marinieren, Halloumi separat vorbereiten und alles auf dem Grill rösten.</p></article><article class="meal-card recipe-detail" id="bruschetta"><h3>Bruschetta al Pomodoro</h3><p><strong>Zutaten:</strong> Brot, reife Tomaten, Knoblauch, Basilikum, Olivenöl, Salz und Pfeffer.</p><p><strong>Ablauf:</strong> Brot rösten, Tomaten würfeln, mit Öl und Basilikum mischen, Brot mit Knoblauch einreiben und belegen.</p></article><article class="meal-card recipe-detail" id="panzanella"><h3>Panzanella</h3><p><strong>Zutaten:</strong> Altbrot, reife Tomaten, rote Zwiebeln, Basilikum, Essig, Olivenöl, Salz und Pfeffer.</p><p><strong>Ablauf:</strong> Brot etwa zwei Stunden vorher einweichen, ausdrücken, mit Tomaten und Zwiebeln vermengen und mit Essig-Öl-Dressing abschmecken.</p></article><article class="meal-card recipe-detail" id="finocchio"><h3>Insalata di Finocchio e Arancia</h3><p><strong>Zutaten:</strong> Fenchel, Blutorange oder Orange, Oliven, Olivenöl, Zitrone, Salz und Pfeffer.</p><p><strong>Ablauf:</strong> Fenchel fein hobeln, Orangen filetieren, Oliven zugeben und kurz vor dem Servieren mit Öl und Zitrone marinieren.</p></article><article class="meal-card"><h3>Frühstück</h3><p>Standard täglich: Brot, Käse, Eier, Joghurt und Obst.</p></article></div></div></section>
+    </main>
+
+    <div class="quote">“La famiglia è tutto.”<div class="tiny-flag" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <footer class="site-footer">Operation Cannoli · Villa Sant’Angelo · Poli · 11. – 14. Juni 2026</footer>
+  </div>
+
+  <div class="insurance-modal is-hidden" id="insuranceModal" aria-modal="true" role="dialog" aria-labelledby="insuranceTitle">
+    <div class="insurance-card">
+      <button class="insurance-close" type="button" aria-label="Banner schließen" data-close-insurance>×</button>
+      <h2 class="insurance-title" id="insuranceTitle">Heute schon an Morgen gedacht?</h2>
+      <div class="insurance-photo">
+        <img src="images/ah-versicherung.jpg" alt="Mario und Maximilian für A&H Versicherung">
+      </div>
+      <div class="insurance-logo">
+        <div class="insurance-logo-main">A&amp;H</div>
+        <div class="insurance-logo-sub">Versicherung</div>
+      </div>
+      <button class="gold-btn insurance-cta" type="button" data-close-insurance>Ja, ich will eine Lebensversicherung</button>
+    </div>
+  </div>
+
+</body>
+</html>

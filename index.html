@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home · Operation Cannoli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Operation Cannoli Startseite">
+        <span>Operation</span><span>Cannoli</span>
+        <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button">Menü</button>
+      <nav class="nav" id="nav">
+        <a class="active" href="index.html">Home</a>
+        <a class="" href="unterkunft.html">Unterkunft</a>
+        <a class="" href="anreise.html">Anreise</a>
+        <a class="" href="essen.html">Essen</a>
+        <a class="" href="restaurants.html">Restaurants</a>
+        <a class="" href="timetable.html">Timetable</a>
+        <a class="" href="aufgaben.html">Aufgaben</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="home-hero" id="home" style="--hero-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2200&q=88');">
+        <div class="hero-inner">
+          <div>
+            <div class="kicker">La famiglia, un obiettivo.</div>
+            <h1 class="hero-title">Operation<br>Cannoli</h1>
+            <div class="trip-meta">11. – 14. Juni 2026<br>Villa Sant’Angelo, Poli (RM)</div>
+            <div class="countdown" aria-label="Countdown bis zum Trip">
+              <div><strong id="days">000</strong><span>Tage</span></div>
+              <div><strong id="hours">00</strong><span>Std</span></div>
+              <div><strong id="minutes">00</strong><span>Min</span></div>
+              <div><strong id="seconds">00</strong><span>Sek</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="wetter">
+        <div class="section-inner">
+          <div class="section-head"><h2 class="section-title">Wetter in Poli</h2><div class="unit-switch">°C | °F</div></div>
+          <div class="weather-grid" id="weatherGrid"><div class="weather-card"><div><div class="weather-day">Lädt</div><div class="weather-date">...</div><div class="weather-icon">☀️</div><span class="weather-high">--°</span><span class="weather-low">--°</span></div></div></div>
+          <p class="weather-note" id="weatherNote"></p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-head"><h2 class="section-title">Schnellzugriffe</h2></div>
+          <div class="quick-grid">
+            <a class="quick-card" href="unterkunft.html"><img src="images/quick/unterkunft.jpg" alt="Villa Sant’Angelo" onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=84'"><div class="quick-card-body"><div><div class="quick-icon">▣</div><div class="quick-label">Unterkunft</div></div></div></a>
+            <a class="quick-card" href="anreise.html"><img src="images/quick/anreise.jpg" alt="Anreise" onerror="this.src='https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=900&q=84'"><div class="quick-card-body"><div><div class="quick-icon">▤</div><div class="quick-label">Anreise</div></div></div></a>
+            <a class="quick-card" href="essen.html"><img src="images/quick/essen.jpg" alt="Essen" onerror="this.src='https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=900&q=84'"><div class="quick-card-body"><div><div class="quick-icon">♨</div><div class="quick-label">Essen</div></div></div></a>
+            <a class="quick-card" href="restaurants.html"><img src="images/quick/restaurants.jpg" alt="Restaurants" onerror="this.src='https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=900&q=84'"><div class="quick-card-body"><div><div class="quick-icon">⌖</div><div class="quick-label">Restaurants</div></div></div></a>
+            <a class="quick-card" href="timetable.html"><img src="images/quick/timetable.jpg" alt="Timetable" onerror="this.src='https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=900&q=84'"><div class="quick-card-body"><div><div class="quick-icon">▦</div><div class="quick-label">Timetable</div></div></div></a>
+            <a class="quick-card" href="aufgaben.html"><img src="images/quick/aufgaben.jpg" alt="Aufgaben" onerror="this.src='https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=84'"><div class="quick-card-body"><div><div class="quick-icon">☑</div><div class="quick-label">Aufgaben</div></div></div></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-head"><h2 class="section-title">Villa Sant’Angelo</h2></div>
+          <div class="villa-strip">
+            <img src="images/villa/villa-1.jpg" alt="Villa Sant’Angelo Pool" onerror="this.src='https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=84'">
+            <img src="images/villa/villa-2.jpg" alt="Villa Sant’Angelo Außenbereich" onerror="this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=84'">
+            <img src="images/villa/villa-3.jpg" alt="Villa Sant’Angelo Innenbereich" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=84'">
+            <img src="images/villa/villa-4.jpg" alt="Villa Sant’Angelo Terrasse" onerror="this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=84'">
+          </div>
+          <div class="center-actions"><a class="outline-btn" href="unterkunft.html">Mehr zur Unterkunft</a></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-head"><h2 class="section-title">Restaurants in der Nähe</h2></div>
+          <div class="restaurant-grid">
+            
+            <article class="restaurant-card"><div class="restaurant-img"><img src="images/restaurants/trattoria-maiuri.jpg" alt="Trattoria Maiuri" onerror="this.src='https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=84'"></div><div class="restaurant-body"><h3 class="restaurant-name">Trattoria Maiuri</h3><div class="stars">★★★★★ <span class="muted">(Poli)</span></div><div class="restaurant-meta">Via Roma 69, Poli<br>Tel.: +39 06 955 1222<br><span class="distance">⌖ ca. 1,2 km von der Villa</span></div><div class="restaurant-actions"><a class="small-btn" href="https://www.google.com/maps/dir/?api=1&origin=Villa%20Sant%20Angelo%20Poli%20Roma&destination=Trattoria%20Maiuri%20Via%20Roma%2069%20Poli" target="_blank" rel="noopener">Route öffnen</a><a class="small-btn" href="https://www.instagram.com/trattoria_maiuri/" target="_blank" rel="noopener">Bildquelle</a></div></div></article>
+            <article class="restaurant-card"><div class="restaurant-img"><img src="images/restaurants/doppio-zero.jpg" alt="Doppio Zero" onerror="this.src='https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=84'"></div><div class="restaurant-body"><h3 class="restaurant-name">Doppio Zero</h3><div class="stars">★★★★★ <span class="muted">(Pizza)</span></div><div class="restaurant-meta">Piazza G. Cascioli, Poli<br>Tel.: +39 06 4368 4853<br><span class="distance">⌖ ca. 1,0 km von der Villa</span></div><div class="restaurant-actions"><a class="small-btn" href="https://www.google.com/maps/dir/?api=1&origin=Villa%20Sant%20Angelo%20Poli%20Roma&destination=Doppio%20Zero%20Piazza%20Monsignor%20Giuseppe%20Cascioli%206%20Poli" target="_blank" rel="noopener">Route öffnen</a><a class="small-btn" href="https://www.instagram.com/doppioozero/" target="_blank" rel="noopener">Bildquelle</a></div></div></article>
+            <article class="restaurant-card"><div class="restaurant-img"><img src="images/restaurants/giardino-panoramico.jpg" alt="Trattoria del Giardino Panoramico" onerror="this.src='https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=84'"></div><div class="restaurant-body"><h3 class="restaurant-name">Giardino Panoramico</h3><div class="stars">★★★★★ <span class="muted">(Castel San Pietro Romano)</span></div><div class="restaurant-meta">Castel San Pietro Romano<br>Tel.: +39 06 953 6262<br><span class="distance">⌖ ca. 6,0 km von der Villa</span></div><div class="restaurant-actions"><a class="small-btn" href="https://www.google.com/maps/dir/?api=1&origin=Villa%20Sant%20Angelo%20Poli%20Roma&destination=Trattoria%20del%20Giardino%20Panoramico%20Castel%20San%20Pietro%20Romano" target="_blank" rel="noopener">Route öffnen</a><a class="small-btn" href="https://www.trattoriadelgiardinopanoramico.it/" target="_blank" rel="noopener">Website</a></div></div></article>
+
+          </div>
+          <div class="center-actions"><a class="outline-btn" href="restaurants.html">Alle Restaurants anzeigen</a></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="quote">“La famiglia è tutto.”<div class="tiny-flag" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <footer class="site-footer">Operation Cannoli · Villa Sant’Angelo · Poli · 11. – 14. Juni 2026</footer>
+  </div>
+
+  <div class="insurance-modal is-hidden" id="insuranceModal" aria-modal="true" role="dialog" aria-labelledby="insuranceTitle">
+    <div class="insurance-card">
+      <button class="insurance-close" type="button" aria-label="Banner schließen" data-close-insurance>×</button>
+      <h2 class="insurance-title" id="insuranceTitle">Heute schon an Morgen gedacht?</h2>
+      <div class="insurance-photo">
+        <img src="images/ah-versicherung.jpg" alt="Mario und Maximilian für A&H Versicherung">
+      </div>
+      <div class="insurance-logo">
+        <div class="insurance-logo-main">A&amp;H</div>
+        <div class="insurance-logo-sub">Versicherung</div>
+      </div>
+      <button class="gold-btn insurance-cta" type="button" data-close-insurance>Ja, ich will eine Lebensversicherung</button>
+    </div>
+  </div>
+
+</body>
+</html>
