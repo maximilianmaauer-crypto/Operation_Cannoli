@@ -35,3 +35,8 @@ service cloud.firestore {
 Danach sind Einträge auf der Seite `einkaufsliste.html` für alle Besucher:innen sichtbar.
 
 Hinweis: Diese Regeln erlauben allen Personen mit dem Link, neue Wünsche einzutragen. Für eine private Lösung wären Login oder ein geschütztes Formular nötig.
+
+
+## Firebase-Status
+
+Die Datei `js/firebase-config.js` wurde mit der Firebase-Web-App-Konfiguration gefüllt. Falls die Einkaufsliste dennoch nicht lädt, müssen in Firebase Firestore die Regeln für `shopping_wishes` veröffentlicht und die Website über GitHub Pages neu deployed werden.

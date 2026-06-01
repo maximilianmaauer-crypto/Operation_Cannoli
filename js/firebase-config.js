@@ -1,6 +1,4 @@
 // Operation Cannoli – Firebase-Konfiguration
-// Damit die Einkaufsliste für alle sichtbar ist, muss hier die Firebase-Web-App-Konfiguration eingefügt werden.
-// Firebase Console → Project settings → General → Your apps → Web app → SDK setup and configuration → Config
 export const firebaseConfig = {
   apiKey: "AIzaSyCQaD2kpwEYKVDreCYmcMy9kz_fP5XuudA",
   authDomain: "operation-cannoli-e37d1.firebaseapp.com",
