@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Einkaufsliste · Operation Cannoli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Operation Cannoli Startseite">
+        <span>Operation</span><span>Cannoli</span>
+        <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button">Menü</button>
+      <nav class="nav" id="nav">
+        <a class="" href="index.html">Home</a>
+        <a class="" href="unterkunft.html">Unterkunft</a>
+        <a class="" href="anreise.html">Anreise</a>
+        <a class="" href="essen.html">Essen</a>
+        <a class="active" href="einkaufsliste.html">Einkaufsliste</a>
+        <a class="" href="restaurants.html">Restaurants</a>
+        <a class="" href="timetable.html">Timetable</a>
+        <a class="" href="aufgaben.html">Aufgaben</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero" style="--page-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=88');">
+        <div class="section-inner">
+          <h1 class="page-title">Einkaufsliste</h1>
+          <p class="page-sub">Wünsche für den Supermarkt werden hier pro Tag gesammelt und nach Firebase-Verbindung für alle Nutzer:innen sichtbar angezeigt.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-head"><h2 class="section-title">Supermarkt-Wünsche eintragen</h2></div>
+
+          <div class="firebase-warning" id="firebaseWarning">
+            Die gemeinsame Einkaufsliste ist noch nicht verbunden. In <strong>js/firebase-config.js</strong> muss einmal die Firebase-Konfiguration eingefügt werden. Danach sind neue Einträge für alle sichtbar.
+          </div>
+
+          <form class="shopping-form" id="shoppingForm">
+            <div class="form-row">
+              <label>
+                Tag
+                <select id="wishDay" required>
+                  <option value="10.06.">10.06. – Vorhut</option>
+                  <option value="11.06.">11.06. – Anreise</option>
+                  <option value="12.06.">12.06.</option>
+                  <option value="13.06.">13.06.</option>
+                  <option value="14.06.">14.06. – Abreise</option>
+                </select>
+              </label>
+
+              <label>
+                Name
+                <input id="wishName" type="text" placeholder="z. B. Max" maxlength="40" required>
+              </label>
+            </div>
+
+            <label>
+              Wunsch / Kommentar
+              <textarea id="wishText" rows="4" placeholder="z. B. Aperol, Cola Zero, Burrata, Chips..." maxlength="280" required></textarea>
+            </label>
+
+            <button class="gold-btn" type="submit">Wunsch speichern</button>
+            <p class="form-status" id="formStatus"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-head"><h2 class="section-title">Aktuelle Wünsche</h2></div>
+          <div class="shopping-board" id="shoppingBoard">
+            <div class="info-card"><h3>Noch keine Verbindung</h3><p>Sobald Firebase verbunden ist, werden hier alle Einträge live angezeigt.</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="quote">“La famiglia è tutto.”<div class="tiny-flag" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <footer class="site-footer">Operation Cannoli · Villa Sant’Angelo · Poli · 11. – 14. Juni 2026</footer>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    import { firebaseConfig } from "./js/firebase-config.js";
+
+    const warning = document.getElementById("firebaseWarning");
+    const form = document.getElementById("shoppingForm");
+    const board = document.getElementById("shoppingBoard");
+    const status = document.getElementById("formStatus");
+
+    const configured = firebaseConfig
+      && firebaseConfig.apiKey
+      && !firebaseConfig.apiKey.includes("HIER_")
+      && firebaseConfig.projectId
+      && !firebaseConfig.projectId.includes("HIER_");
+
+    const days = ["10.06.", "11.06.", "12.06.", "13.06.", "14.06."];
+
+    function escapeHTML(value) {
+      return String(value || "").replace(/[&<>'"]/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#039;",
+        """: "&quot;"
+      }[char]));
+    }
+
+    function renderWishes(wishes) {
+      const grouped = days.map(day => ({
+        day,
+        items: wishes.filter(item => item.day === day)
+      }));
+
+      board.innerHTML = grouped.map(group => `
+        <article class="shopping-day">
+          <h3>${group.day}</h3>
+          ${group.items.length ? `
+            <div class="wish-list">
+              ${group.items.map(item => `
+                <div class="wish-item">
+                  <div class="wish-meta">${escapeHTML(item.name)} · ${item.createdAtText || "gerade eben"}</div>
+                  <div class="wish-text">${escapeHTML(item.text)}</div>
+                </div>
+              `).join("")}
+            </div>
+          ` : `<p class="empty-day">Noch keine Wünsche eingetragen.</p>`}
+        </article>
+      `).join("");
+    }
+
+    if (!configured) {
+      form.querySelectorAll("input, textarea, select, button").forEach(el => el.disabled = true);
+      status.textContent = "Firebase-Konfiguration fehlt. Die gemeinsame Liste ist deshalb noch deaktiviert.";
+      renderWishes([]);
+    } else {
+      warning.style.display = "none";
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const wishesRef = collection(db, "shopping_wishes");
+      const q = query(wishesRef, orderBy("createdAt", "desc"));
+
+      onSnapshot(q, snapshot => {
+        const wishes = snapshot.docs.map(doc => {
+          const data = doc.data();
+          const createdAt = data.createdAt?.toDate ? data.createdAt.toDate() : null;
+          return {
+            id: doc.id,
+            day: data.day,
+            name: data.name,
+            text: data.text,
+            createdAtText: createdAt ? createdAt.toLocaleString("de-DE", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "gerade eben"
+          };
+        });
+        renderWishes(wishes);
+      }, error => {
+        board.innerHTML = `<div class="info-card"><h3>Firebase-Fehler</h3><p>${escapeHTML(error.message)}</p></div>`;
+      });
+
+      form.addEventListener("submit", async event => {
+        event.preventDefault();
+        const day = document.getElementById("wishDay").value;
+        const name = document.getElementById("wishName").value.trim();
+        const text = document.getElementById("wishText").value.trim();
+
+        if (!day || !name || !text) return;
+
+        status.textContent = "Wird gespeichert...";
+        try {
+          await addDoc(wishesRef, { day, name, text, createdAt: serverTimestamp() });
+          form.reset();
+          status.textContent = "Gespeichert. Der Wunsch ist jetzt für alle sichtbar.";
+        } catch (error) {
+          status.textContent = "Fehler beim Speichern: " + error.message;
+        }
+      });
+    }
+  </script>
+</body>
+</html>

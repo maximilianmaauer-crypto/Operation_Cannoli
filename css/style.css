@@ -234,7 +234,7 @@ ul.clean li::before { content: "— "; color: var(--gold); }
 .weather-note { margin-top: 10px; color: rgba(247,236,213,.55); font-size: .98rem; text-align: center; }
 
 /* Quicklinks */
-.quick-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; padding-bottom: 30px; border-bottom: 1px solid var(--line-soft); }
+.quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 14px; padding-bottom: 30px; border-bottom: 1px solid var(--line-soft); }
 .quick-card { min-height: 235px; display: grid; grid-template-rows: 132px 1fr; background: linear-gradient(180deg, rgba(19,19,18,1), rgba(9,9,8,1)); border: 1px solid rgba(211,170,100,.56); border-radius: 6px; overflow: hidden; box-shadow: 0 14px 38px rgba(0,0,0,.34); transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
 .quick-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 20px 52px rgba(0,0,0,.58); }
 .quick-card img { width: 100%; height: 132px; object-fit: cover; filter: saturate(.72) contrast(1.06) brightness(.82); }
@@ -345,3 +345,34 @@ ul.clean li::before { content: "— "; color: var(--gold); }
   .quick-grid { grid-template-columns: 1fr; }
   .insurance-title { font-size: 2.55rem; }
 }
+
+
+/* Tables */
+.table-wrap { overflow-x: auto; border: 1px solid rgba(211,170,100,.34); border-radius: 8px; box-shadow: 0 18px 54px rgba(0,0,0,.32); }
+.arrival-table { width: 100%; border-collapse: collapse; min-width: 720px; background: linear-gradient(180deg, rgba(24,23,20,.95), rgba(8,8,7,.97)); }
+.arrival-table th, .arrival-table td { padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.07); text-align: left; color: rgba(247,236,213,.9); font-size: 1.08rem; }
+.arrival-table th { color: var(--gold-2); font-family: "Cinzel", Georgia, serif; font-size: .86rem; letter-spacing: .08em; text-transform: uppercase; background: rgba(211,170,100,.08); }
+.arrival-table tr:last-child td { border-bottom: 0; }
+.arrival-table td:nth-child(1), .arrival-table td:nth-child(2) { color: var(--gold); font-family: "Cinzel", Georgia, serif; }
+.section-note { margin: -4px 0 18px; color: rgba(247,236,213,.65); font-size: 1.05rem; }
+
+/* Shared shopping list */
+.firebase-warning { margin-bottom: 18px; padding: 16px 18px; border: 1px solid rgba(211,170,100,.44); border-radius: 8px; background: rgba(211,170,100,.09); color: rgba(247,236,213,.9); font-size: 1.05rem; line-height: 1.45; }
+.shopping-form { display: grid; gap: 16px; padding: 24px; background: linear-gradient(180deg, rgba(24,23,20,.95), rgba(8,8,7,.97)); border: 1px solid rgba(211,170,100,.36); border-radius: var(--radius); box-shadow: 0 18px 54px rgba(0,0,0,.38); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.shopping-form label { display: grid; gap: 8px; color: var(--gold-2); font-family: "Cinzel", Georgia, serif; font-size: .82rem; letter-spacing: .07em; text-transform: uppercase; }
+.shopping-form input, .shopping-form select, .shopping-form textarea { width: 100%; border: 1px solid rgba(211,170,100,.36); border-radius: 6px; background: rgba(5,5,5,.62); color: var(--cream); padding: 13px 14px; font: 1.06rem Georgia, serif; outline: none; }
+.shopping-form textarea { resize: vertical; min-height: 120px; }
+.shopping-form input:focus, .shopping-form select:focus, .shopping-form textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(211,170,100,.12); }
+.shopping-form button:disabled, .shopping-form input:disabled, .shopping-form select:disabled, .shopping-form textarea:disabled { opacity: .55; cursor: not-allowed; }
+.form-status { color: rgba(247,236,213,.72); min-height: 1.2em; font-size: 1.02rem; }
+.shopping-board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.shopping-day { background: linear-gradient(180deg, rgba(24,23,20,.95), rgba(8,8,7,.97)); border: 1px solid rgba(211,170,100,.36); border-radius: var(--radius); padding: 18px; min-height: 210px; box-shadow: 0 18px 54px rgba(0,0,0,.28); }
+.shopping-day h3 { color: var(--gold); font-family: "Cinzel", Georgia, serif; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px; }
+.wish-list { display: grid; gap: 10px; }
+.wish-item { padding: 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 6px; background: rgba(255,255,255,.035); }
+.wish-meta { color: var(--gold-2); font-size: .92rem; margin-bottom: 5px; }
+.wish-text { color: rgba(247,236,213,.9); font-size: 1.04rem; line-height: 1.35; }
+.empty-day { color: rgba(247,236,213,.52); font-size: 1rem; line-height: 1.4; }
+@media (max-width: 1060px) { .shopping-board { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .form-row, .shopping-board { grid-template-columns: 1fr; } }

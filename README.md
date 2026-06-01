@@ -1,30 +1,37 @@
-# Operation Cannoli – GitHub Pages
+# Operation Cannoli – GitHub Pages Website
 
 ## Upload
+
 1. ZIP entpacken.
-2. Den Inhalt des Ordners direkt in das GitHub-Repository hochladen.
-3. `index.html` muss im Hauptverzeichnis liegen.
-4. GitHub Pages aktivieren: Settings → Pages → Deploy from branch → main → /(root).
+2. Den Inhalt des Ordners hochladen, nicht den Ordner selbst.
+3. `index.html`, `css/`, `js/`, `images/` und alle Unterseiten müssen direkt im Repository-Hauptverzeichnis liegen.
+4. GitHub Pages aktivieren: `Settings → Pages → Deploy from branch → main → /(root)`.
 
-## Enthaltene Seiten
-- index.html
-- unterkunft.html
-- anreise.html
-- essen.html
-- restaurants.html
-- timetable.html
-- aufgaben.html
-- css/style.css
-- js/main.js
-- images/ah-versicherung.jpg
+## Gemeinsame Einkaufsliste aktivieren
 
-## A&H Banner
-Das Banner erscheint nur beim ersten Aufruf. Nach Klick auf „Ja, ich will eine Lebensversicherung“ wird es per localStorage ausgeblendet. Zum erneuten Testen kann `?resetBanner=1` an die URL angehängt werden.
+GitHub Pages ist statisch. Kommentare können deshalb nicht für alle sichtbar gespeichert werden, solange keine Datenbank angebunden ist. Diese Version ist bereits für **Firebase Firestore** vorbereitet.
 
-## Originalbilder der Restaurants
-Die Website erwartet optional folgende lokale Dateien:
-- images/restaurants/trattoria-maiuri.jpg
-- images/restaurants/doppio-zero.jpg
-- images/restaurants/giardino-panoramico.jpg
+### Firebase-Schritte
 
-Wenn diese Dateien nicht vorhanden sind, werden automatisch Platzhalterbilder geladen. Die Buttons „Bildquelle“ bzw. „Website“ führen zu den jeweiligen Quellen.
+1. Firebase öffnen: https://console.firebase.google.com/
+2. Neues Projekt erstellen, z. B. `operation-cannoli`.
+3. Firestore Database aktivieren.
+4. Web-App hinzufügen.
+5. Die angezeigte Firebase-Konfiguration in `js/firebase-config.js` einfügen.
+6. In Firestore unter `Rules` diese Regeln setzen:
+
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /shopping_wishes/{docId} {
+      allow read, create: if true;
+      allow update, delete: if false;
+    }
+  }
+}
+```
+
+Danach sind Einträge auf der Seite `einkaufsliste.html` für alle Besucher:innen sichtbar.
+
+Hinweis: Diese Regeln erlauben allen Personen mit dem Link, neue Wünsche einzutragen. Für eine private Lösung wären Login oder ein geschütztes Formular nötig.
