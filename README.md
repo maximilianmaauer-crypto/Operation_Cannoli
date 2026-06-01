@@ -53,4 +53,7 @@ Zum Testen kann an die URL `?resetBanner=1` angehängt werden, zum Beispiel `ind
 
 
 ## A&H-Kinder-Popup
-Beim Navigieren erscheint jetzt gelegentlich ein kleines A&H-Fenster mit dem Text „Denken Sie an Ihre Kinder.“. Es wird absichtlich selten angezeigt: maximal etwa einmal alle 90 Sekunden und mit geringer Zufallswahrscheinlichkeit. Zum Testen kann `?forceKinder=1` an die URL gehängt werden. Mit `?resetKinder=1` wird die interne Zählung zurückgesetzt.
+Der kleine Hinweis „Denken Sie an Ihre Kinder.“ erscheint jetzt nicht mehr nur sehr selten per Zufall, sondern zuverlässig nach mehreren internen Seitenwechseln bzw. gelegentlich nach etwas Verweildauer. Ein Cooldown von ca. 55 Sekunden verhindert, dass das Fenster nervt. Zum Testen kann `?forceKinder=1` an die URL gehängt werden. Mit `?resetKinder=1` wird die interne Zählung zurückgesetzt.
+
+
+Update: Das Kinder-Popup zeigt das Schutzengelbild nun vollständig (nicht mehr zugeschnitten) und bleibt dabei unten rechts in der Ecke positioniert.

@@ -25,11 +25,13 @@ if (menuBtn && nav) {
 }
 
 const modal = document.getElementById("insuranceModal");
-const bannerCounterKey = "operationCannoliInsuranceOpenCounter_v1";
+const bannerCounterKey = "operationCannoliInsuranceOpenCounter_v2";
+const bannerSessionKey = "operationCannoliInsuranceSeenThisSession_v2";
 
 // Zum Testen kann ?resetBanner=1 an die URL gehängt werden. Dadurch startet die Zählung neu.
 if (new URLSearchParams(window.location.search).has("resetBanner")) {
   localStorage.removeItem(bannerCounterKey);
+  sessionStorage.removeItem(bannerSessionKey);
 }
 
 function showInsuranceModalIfNeeded() {
@@ -39,10 +41,14 @@ function showInsuranceModalIfNeeded() {
   const currentCount = Number.isFinite(previousCount) ? previousCount + 1 : 1;
   localStorage.setItem(bannerCounterKey, String(currentCount));
 
-  // Anzeige im Wechsel: 1. Öffnen = sichtbar, 2. Öffnen = nicht sichtbar, 3. Öffnen = sichtbar usw.
-  const shouldShowThisTime = currentCount % 2 === 1;
+  const alreadySeenInThisTab = sessionStorage.getItem(bannerSessionKey) === "true";
+
+  // Logik: Beim ersten Laden in einem neuen Tab/Browserfenster erscheint A&H immer.
+  // Danach erscheint es nur noch bei jedem 6. Laden der Seite.
+  const shouldShowThisTime = !alreadySeenInThisTab || currentCount % 6 === 0;
 
   if (shouldShowThisTime) {
+    sessionStorage.setItem(bannerSessionKey, "true");
     modal.classList.remove("is-hidden");
     document.body.classList.add("modal-open");
   }
@@ -64,6 +70,9 @@ function closeInsuranceModal() {
     document.querySelectorAll("[data-close-insurance]").forEach(btn => {
       btn.disabled = false;
     });
+
+    // Nach dem großen A&H-Fenster darf der kleine Kinder-Hinweis später gelegentlich erscheinen.
+    window.setTimeout(() => maybeShowKidsInsurancePopup("after-main-modal"), 14000);
   }, 1050);
 }
 
@@ -104,17 +113,23 @@ async function loadWeather() {
 loadWeather();
 
 
-// Zufälliges A&H-Fenster beim Navigieren: bewusst selten, damit es nicht nervt.
-const kidsPopupCooldownKey = "operationCannoliKidsInsuranceLastShown_v1";
-const kidsPopupViewCounterKey = "operationCannoliKidsInsuranceViewCounter_v1";
 
-if (new URLSearchParams(window.location.search).has("resetKinder")) {
+// Zufälliges A&H-Fenster beim Navigieren: sichtbar genug, aber bewusst nicht nervig.
+const kidsPopupCooldownKey = "operationCannoliKidsInsuranceLastShown_v2";
+const kidsPopupViewCounterKey = "operationCannoliKidsInsuranceViewCounter_v2";
+const kidsPopupDeferredKey = "operationCannoliKidsInsuranceDeferred_v2";
+const kidsPopupCooldownMs = 1000 * 55;
+
+const params = new URLSearchParams(window.location.search);
+
+if (params.has("resetKinder")) {
   localStorage.removeItem(kidsPopupCooldownKey);
   localStorage.removeItem(kidsPopupViewCounterKey);
+  sessionStorage.removeItem(kidsPopupDeferredKey);
 }
 
-if (new URLSearchParams(window.location.search).has("forceKinder")) {
-  window.setTimeout(() => showKidsInsurancePopup(true), 750);
+if (params.has("forceKinder")) {
+  window.setTimeout(() => showKidsInsurancePopup(true), 900);
 }
 
 function createKidsInsurancePopup() {
@@ -148,19 +163,26 @@ function createKidsInsurancePopup() {
 }
 
 let kidsPopupTimer = null;
+let kidsRetryTimer = null;
+
+function mainInsuranceIsVisible() {
+  return Boolean(modal && !modal.classList.contains("is-hidden"));
+}
 
 function showKidsInsurancePopup(force = false) {
-  const mainInsuranceIsOpen = modal && !modal.classList.contains("is-hidden");
-  if (mainInsuranceIsOpen && !force) return;
+  if (mainInsuranceIsVisible() && !force) {
+    window.clearTimeout(kidsRetryTimer);
+    kidsRetryTimer = window.setTimeout(() => showKidsInsurancePopup(false), 12000);
+    return false;
+  }
 
   const existing = document.getElementById("kidsInsurancePopup");
-  if (existing && existing.classList.contains("is-visible")) return;
+  if (existing && existing.classList.contains("is-visible")) return false;
 
   const now = Date.now();
   const lastShown = Number.parseInt(localStorage.getItem(kidsPopupCooldownKey) || "0", 10);
-  const cooldownMs = 1000 * 90;
 
-  if (!force && now - lastShown < cooldownMs) return;
+  if (!force && now - lastShown < kidsPopupCooldownMs) return false;
 
   const popup = createKidsInsurancePopup();
   localStorage.setItem(kidsPopupCooldownKey, String(now));
@@ -169,7 +191,8 @@ function showKidsInsurancePopup(force = false) {
   popup.classList.add("is-visible");
 
   window.clearTimeout(kidsPopupTimer);
-  kidsPopupTimer = window.setTimeout(() => hideKidsInsurancePopup(), 5200);
+  kidsPopupTimer = window.setTimeout(() => hideKidsInsurancePopup(), 6200);
+  return true;
 }
 
 function hideKidsInsurancePopup() {
@@ -186,21 +209,42 @@ function hideKidsInsurancePopup() {
 }
 
 function maybeShowKidsInsurancePopup(reason = "page") {
+  // Wenn das große A&H-Fenster gerade offen ist, wird der Kinder-Hinweis nicht verloren,
+  // sondern nach dem Schließen noch einmal versucht.
+  if (mainInsuranceIsVisible()) {
+    sessionStorage.setItem(kidsPopupDeferredKey, "true");
+    return;
+  }
+
   const previousViews = Number.parseInt(localStorage.getItem(kidsPopupViewCounterKey) || "0", 10);
   const currentViews = Number.isFinite(previousViews) ? previousViews + 1 : 1;
   localStorage.setItem(kidsPopupViewCounterKey, String(currentViews));
 
-  // Selten genug: etwa 16 % Chance pro Seitenaufruf/Navigationsmoment, plus gelegentlich nach mehreren Wechseln.
-  const randomHit = Math.random() < 0.16;
-  const periodicHit = currentViews >= 6 && Math.random() < 0.32;
+  // Nicht mehr rein zufällig: nach mehreren Seitenwechseln kommt der Hinweis verlässlich,
+  // ansonsten nur mit geringer Zufallschance. Der Cooldown verhindert Spam.
+  const deterministicHit = currentViews >= 3;
+  const randomHit = currentViews >= 2 && Math.random() < 0.18;
 
-  if (randomHit || periodicHit) {
-    if (periodicHit) localStorage.setItem(kidsPopupViewCounterKey, "0");
-    showKidsInsurancePopup(false);
+  if (deterministicHit || randomHit) {
+    const shown = showKidsInsurancePopup(false);
+    if (shown) localStorage.setItem(kidsPopupViewCounterKey, "0");
   }
 }
 
-window.setTimeout(() => maybeShowKidsInsurancePopup("page-load"), 1600);
+function tryDeferredKidsPopup() {
+  if (sessionStorage.getItem(kidsPopupDeferredKey) === "true" && !mainInsuranceIsVisible()) {
+    sessionStorage.removeItem(kidsPopupDeferredKey);
+    window.setTimeout(() => maybeShowKidsInsurancePopup("deferred"), 10000);
+  }
+}
+
+window.setTimeout(() => maybeShowKidsInsurancePopup("page-load"), 5200);
+window.setInterval(tryDeferredKidsPopup, 4000);
+window.setInterval(() => {
+  if (!document.hidden && Math.random() < 0.16) {
+    maybeShowKidsInsurancePopup("idle");
+  }
+}, 65000);
 
 document.addEventListener("click", event => {
   const link = event.target.closest("a[href]");
@@ -211,6 +255,6 @@ document.addEventListener("click", event => {
   const isInternalPage = href.endsWith(".html") || href.includes(".html#");
 
   if (isInternalJump || isInternalPage) {
-    window.setTimeout(() => maybeShowKidsInsurancePopup("navigation"), 900);
+    window.setTimeout(() => maybeShowKidsInsurancePopup("navigation"), 1200);
   }
 });
