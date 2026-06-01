@@ -2,10 +2,10 @@
 // Damit die Einkaufsliste für alle sichtbar ist, muss hier die Firebase-Web-App-Konfiguration eingefügt werden.
 // Firebase Console → Project settings → General → Your apps → Web app → SDK setup and configuration → Config
 export const firebaseConfig = {
-  apiKey: "HIER_API_KEY_EINFUEGEN",
-  authDomain: "HIER_PROJECT.firebaseapp.com",
-  projectId: "HIER_PROJECT_ID",
-  storageBucket: "HIER_PROJECT.appspot.com",
-  messagingSenderId: "HIER_SENDER_ID",
-  appId: "HIER_APP_ID"
-};
+    apiKey: "AIzaSyCQaD2kpwEYKVDreCYmcMy9kz_fP5XuudA",
+    authDomain: "operation-cannoli-e37d1.firebaseapp.com",
+    projectId: "operation-cannoli-e37d1",
+    storageBucket: "operation-cannoli-e37d1.firebasestorage.app",
+    messagingSenderId: "795404337053",
+    appId: "1:795404337053:web:b1b3f9dfcdd1179cb7b974"
+  };
