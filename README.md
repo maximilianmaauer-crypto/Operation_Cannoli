@@ -50,3 +50,7 @@ Der Buttontext wurde zu „Ja, ich will eine scheißteure Lebensversicherung“ 
 Das A&H-Fenster erscheint jetzt im Wechsel: Beim 1., 3., 5. usw. Öffnen der Seite wird es angezeigt, beim 2., 4., 6. usw. Öffnen bleibt es ausgeblendet.
 
 Zum Testen kann an die URL `?resetBanner=1` angehängt werden, zum Beispiel `index.html?resetBanner=1`. Dadurch startet die lokale Zählung im Browser neu.
+
+
+## A&H-Kinder-Popup
+Beim Navigieren erscheint jetzt gelegentlich ein kleines A&H-Fenster mit dem Text „Denken Sie an Ihre Kinder.“. Es wird absichtlich selten angezeigt: maximal etwa einmal alle 90 Sekunden und mit geringer Zufallswahrscheinlichkeit. Zum Testen kann `?forceKinder=1` an die URL gehängt werden. Mit `?resetKinder=1` wird die interne Zählung zurückgesetzt.

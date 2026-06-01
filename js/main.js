@@ -102,3 +102,115 @@ async function loadWeather() {
   }
 }
 loadWeather();
+
+
+// Zufälliges A&H-Fenster beim Navigieren: bewusst selten, damit es nicht nervt.
+const kidsPopupCooldownKey = "operationCannoliKidsInsuranceLastShown_v1";
+const kidsPopupViewCounterKey = "operationCannoliKidsInsuranceViewCounter_v1";
+
+if (new URLSearchParams(window.location.search).has("resetKinder")) {
+  localStorage.removeItem(kidsPopupCooldownKey);
+  localStorage.removeItem(kidsPopupViewCounterKey);
+}
+
+if (new URLSearchParams(window.location.search).has("forceKinder")) {
+  window.setTimeout(() => showKidsInsurancePopup(true), 750);
+}
+
+function createKidsInsurancePopup() {
+  let popup = document.getElementById("kidsInsurancePopup");
+  if (popup) return popup;
+
+  popup = document.createElement("div");
+  popup.id = "kidsInsurancePopup";
+  popup.className = "kids-insurance-pop";
+  popup.setAttribute("role", "dialog");
+  popup.setAttribute("aria-live", "polite");
+  popup.innerHTML = `
+    <div class="kids-insurance-card">
+      <button class="kids-insurance-close" type="button" aria-label="Hinweis schließen">×</button>
+      <img class="kids-insurance-image" src="images/ah-kinder.jpg" alt="Schutzengel mit Kindern">
+      <div class="kids-insurance-body">
+        <div class="kids-insurance-kicker">A&amp;H Versicherungen</div>
+        <div class="kids-insurance-title">Denken Sie an Ihre Kinder.</div>
+        <div class="kids-insurance-subtitle">Heute vorsorgen</div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  popup.querySelector(".kids-insurance-close").addEventListener("click", () => hideKidsInsurancePopup());
+  popup.addEventListener("click", event => {
+    if (event.target === popup) hideKidsInsurancePopup();
+  });
+
+  return popup;
+}
+
+let kidsPopupTimer = null;
+
+function showKidsInsurancePopup(force = false) {
+  const mainInsuranceIsOpen = modal && !modal.classList.contains("is-hidden");
+  if (mainInsuranceIsOpen && !force) return;
+
+  const existing = document.getElementById("kidsInsurancePopup");
+  if (existing && existing.classList.contains("is-visible")) return;
+
+  const now = Date.now();
+  const lastShown = Number.parseInt(localStorage.getItem(kidsPopupCooldownKey) || "0", 10);
+  const cooldownMs = 1000 * 90;
+
+  if (!force && now - lastShown < cooldownMs) return;
+
+  const popup = createKidsInsurancePopup();
+  localStorage.setItem(kidsPopupCooldownKey, String(now));
+
+  popup.classList.remove("is-leaving");
+  popup.classList.add("is-visible");
+
+  window.clearTimeout(kidsPopupTimer);
+  kidsPopupTimer = window.setTimeout(() => hideKidsInsurancePopup(), 5200);
+}
+
+function hideKidsInsurancePopup() {
+  const popup = document.getElementById("kidsInsurancePopup");
+  if (!popup || popup.classList.contains("is-leaving")) return;
+
+  popup.classList.remove("is-visible");
+  popup.classList.add("is-leaving");
+  window.clearTimeout(kidsPopupTimer);
+
+  window.setTimeout(() => {
+    popup.classList.remove("is-leaving");
+  }, 760);
+}
+
+function maybeShowKidsInsurancePopup(reason = "page") {
+  const previousViews = Number.parseInt(localStorage.getItem(kidsPopupViewCounterKey) || "0", 10);
+  const currentViews = Number.isFinite(previousViews) ? previousViews + 1 : 1;
+  localStorage.setItem(kidsPopupViewCounterKey, String(currentViews));
+
+  // Selten genug: etwa 16 % Chance pro Seitenaufruf/Navigationsmoment, plus gelegentlich nach mehreren Wechseln.
+  const randomHit = Math.random() < 0.16;
+  const periodicHit = currentViews >= 6 && Math.random() < 0.32;
+
+  if (randomHit || periodicHit) {
+    if (periodicHit) localStorage.setItem(kidsPopupViewCounterKey, "0");
+    showKidsInsurancePopup(false);
+  }
+}
+
+window.setTimeout(() => maybeShowKidsInsurancePopup("page-load"), 1600);
+
+document.addEventListener("click", event => {
+  const link = event.target.closest("a[href]");
+  if (!link) return;
+
+  const href = link.getAttribute("href") || "";
+  const isInternalJump = href.startsWith("#");
+  const isInternalPage = href.endsWith(".html") || href.includes(".html#");
+
+  if (isInternalJump || isInternalPage) {
+    window.setTimeout(() => maybeShowKidsInsurancePopup("navigation"), 900);
+  }
+});
