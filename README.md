@@ -43,3 +43,10 @@ Die Datei `js/firebase-config.js` wurde mit der Firebase-Web-App-Konfiguration g
 
 ## Update A&H-Banner
 Der Buttontext wurde zu „Ja, ich will eine scheißteure Lebensversicherung“ geändert. Beim Klick dreht sich das A&H-Fenster überdreht aus dem Bild und wird danach im Browser gespeichert ausgeblendet. Zum erneuten Testen: `?resetBanner=1` an die URL anhängen.
+
+
+## A&H-Banner
+
+Das A&H-Fenster erscheint jetzt im Wechsel: Beim 1., 3., 5. usw. Öffnen der Seite wird es angezeigt, beim 2., 4., 6. usw. Öffnen bleibt es ausgeblendet.
+
+Zum Testen kann an die URL `?resetBanner=1` angehängt werden, zum Beispiel `index.html?resetBanner=1`. Dadurch startet die lokale Zählung im Browser neu.

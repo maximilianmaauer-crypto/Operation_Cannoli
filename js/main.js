@@ -25,21 +25,31 @@ if (menuBtn && nav) {
 }
 
 const modal = document.getElementById("insuranceModal");
-const bannerKey = "operationCannoliInsuranceAccepted_v2";
+const bannerCounterKey = "operationCannoliInsuranceOpenCounter_v1";
+
+// Zum Testen kann ?resetBanner=1 an die URL gehängt werden. Dadurch startet die Zählung neu.
 if (new URLSearchParams(window.location.search).has("resetBanner")) {
-  localStorage.removeItem(bannerKey);
+  localStorage.removeItem(bannerCounterKey);
 }
+
 function showInsuranceModalIfNeeded() {
   if (!modal) return;
-  const accepted = localStorage.getItem(bannerKey) === "true";
-  if (!accepted) {
+
+  const previousCount = Number.parseInt(localStorage.getItem(bannerCounterKey) || "0", 10);
+  const currentCount = Number.isFinite(previousCount) ? previousCount + 1 : 1;
+  localStorage.setItem(bannerCounterKey, String(currentCount));
+
+  // Anzeige im Wechsel: 1. Öffnen = sichtbar, 2. Öffnen = nicht sichtbar, 3. Öffnen = sichtbar usw.
+  const shouldShowThisTime = currentCount % 2 === 1;
+
+  if (shouldShowThisTime) {
     modal.classList.remove("is-hidden");
     document.body.classList.add("modal-open");
   }
 }
+
 function closeInsuranceModal() {
   if (!modal) return;
-  localStorage.setItem(bannerKey, "true");
 
   // Erst die überdrehte Exit-Animation abspielen, danach vollständig ausblenden.
   modal.classList.add("is-exiting");
@@ -51,8 +61,12 @@ function closeInsuranceModal() {
     modal.classList.add("is-hidden");
     modal.classList.remove("is-exiting");
     document.body.classList.remove("modal-open");
+    document.querySelectorAll("[data-close-insurance]").forEach(btn => {
+      btn.disabled = false;
+    });
   }, 1050);
 }
+
 document.querySelectorAll("[data-close-insurance]").forEach(btn => btn.addEventListener("click", closeInsuranceModal));
 showInsuranceModalIfNeeded();
 
