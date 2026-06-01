@@ -38,9 +38,20 @@ function showInsuranceModalIfNeeded() {
   }
 }
 function closeInsuranceModal() {
+  if (!modal) return;
   localStorage.setItem(bannerKey, "true");
-  modal?.classList.add("is-hidden");
-  document.body.classList.remove("modal-open");
+
+  // Erst die überdrehte Exit-Animation abspielen, danach vollständig ausblenden.
+  modal.classList.add("is-exiting");
+  document.querySelectorAll("[data-close-insurance]").forEach(btn => {
+    btn.disabled = true;
+  });
+
+  window.setTimeout(() => {
+    modal.classList.add("is-hidden");
+    modal.classList.remove("is-exiting");
+    document.body.classList.remove("modal-open");
+  }, 1050);
 }
 document.querySelectorAll("[data-close-insurance]").forEach(btn => btn.addEventListener("click", closeInsuranceModal));
 showInsuranceModalIfNeeded();

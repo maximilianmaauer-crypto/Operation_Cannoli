@@ -40,3 +40,6 @@ Hinweis: Diese Regeln erlauben allen Personen mit dem Link, neue Wünsche einzut
 ## Firebase-Status
 
 Die Datei `js/firebase-config.js` wurde mit der Firebase-Web-App-Konfiguration gefüllt. Falls die Einkaufsliste dennoch nicht lädt, müssen in Firebase Firestore die Regeln für `shopping_wishes` veröffentlicht und die Website über GitHub Pages neu deployed werden.
+
+## Update A&H-Banner
+Der Buttontext wurde zu „Ja, ich will eine scheißteure Lebensversicherung“ geändert. Beim Klick dreht sich das A&H-Fenster überdreht aus dem Bild und wird danach im Browser gespeichert ausgeblendet. Zum erneuten Testen: `?resetBanner=1` an die URL anhängen.
